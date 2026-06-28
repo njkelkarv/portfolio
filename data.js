@@ -8,7 +8,7 @@ const data = {
         lines: [
             "Interested in Compilers, Graphics and better Program Representations",
             "Enjoy making Educational Videos, Animations, Games",
-            "Most of my public work is under the name \"VoxelRifts\"",
+            `Most of my public work is under the name "${public_name}"`,
         ],
     },
     education: [
