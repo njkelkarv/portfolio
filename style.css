@@ -1,0 +1,111 @@
+:root {
+    --bg: #0e0e0e;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --muted: #666;
+    --accent: #7eb8f7;
+    --font: system-ui, sans-serif;
+    --mono: 'Courier New', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-y: auto;
+}
+
+canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+#name h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+#name .lines {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+section>h2 {
+    font-size: 0.65rem;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.item {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item-title {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.item-title a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.item-title a:hover {
+    color: var(--accent);
+}
+
+.item-meta {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.item-lines {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
