@@ -17,13 +17,20 @@ const STEP = CONFIG.cell;
 
 const STAMPS = {
     diagonal_sweep: {
-        frames: (() => { const o = []; for (let l = -6; l <= 3; l++) { o.push([[l, l]]); } return o; })(),
+        generate: () => {
+            const len = 15 + Math.floor(Math.random() * 10);
+            const frames = [];
+            for (let i = -len; i <= 0; i++) frames.push([[i, i]]);
+            return frames;
+        }
     },
-
     diagonal_sweep_inv: {
-        frames: [
-            [[4, -4]], [[3, -3]], [[2, -2]], [[1, -1]], [[0, 0]], [[-1, 1]], [[-2, 2]], [[-3, 3]], [[-4, 4]],
-        ]
+        generate: () => {
+            const len = 15 + Math.floor(Math.random() * 10);
+            const frames = [];
+            for (let i = len; i >= 0; i--) frames.push([[i, -i]]);
+            return frames;
+        }
     },
     star: {
         frames: [
@@ -53,7 +60,6 @@ const STAMPS = {
         ]
     },
 };
-
 // --- Phases ---
 
 const PHASES = [
@@ -120,15 +126,16 @@ function resize() {
 }
 
 function spawn() {
-    const phase = currentPhase();
-    const name = phase.stamps[Math.floor(Math.random() * phase.stamps.length)];
-    const stamp = STAMPS[name];
+    const phase  = currentPhase();
+    const name   = phase.stamps[Math.floor(Math.random() * phase.stamps.length)];
+    const stamp  = STAMPS[name];
+    const frames = stamp.generate ? stamp.generate() : stamp.frames;
     active.push({
-        cx: Math.floor(Math.random() * cols),
-        cy: Math.floor(Math.random() * rows),
-        frameSets: stamp.frames.map(f => new Set(f.map(([c, r]) => `${c},${r}`))),
-        phase: 0,
-        speed: phase.speedMin + Math.random() * (phase.speedMax - phase.speedMin),
+        cx:        Math.floor(Math.random() * cols),
+        cy:        Math.floor(Math.random() * rows),
+        frameSets: frames.map(f => new Set(f.map(([c, r]) => `${c},${r}`))),
+        phase:     0,
+        speed:     phase.speedMin + Math.random() * (phase.speedMax - phase.speedMin),
         maxHeight: phase.maxHeight,
     });
 }
